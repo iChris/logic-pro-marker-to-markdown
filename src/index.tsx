@@ -32,7 +32,7 @@ export default function ConvertTimecodes() {
         const title = data[1] // Set the title
         const time = data[0].replace(regexFirstNumbers, "").replace(regexLastNumbers, "") // Strip the defined numbers from the time
 
-        const template = `* **[${time}](#t=${time})** ${title}<br>\n` // Create template string for the complete markdown template
+        const template = `* **[${time}](#t=${time})** ${title}\n` // Create template string for the complete markdown template
         markdownResult += template // Add the item to the rest of the results
       }
     })

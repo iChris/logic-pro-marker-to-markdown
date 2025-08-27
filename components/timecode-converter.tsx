@@ -44,7 +44,7 @@ export default function TimecodeConverter() {
       const cleanTime = timeItem.replace(regexFirstNumbers, "").replace(regexFrameNumbers, "")
       console.log("[v0] Cleaned time:", cleanTime)
 
-      const template = `* **[${cleanTime}](#t=${cleanTime})** ${titleItem}<br>\n`
+      const template = `* **[${cleanTime}](#t=${cleanTime})** ${titleItem}\n`
       markdownResult += template
     }
 
@@ -83,7 +83,7 @@ export default function TimecodeConverter() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Play className="h-5 w-5" />
+            <Play className="h-5 w-5 text-yellow-400" />
             Input Timecode Data
           </CardTitle>
           <CardDescription>
@@ -100,7 +100,7 @@ ${exampleData}`}
             onChange={(e) => setInput(e.target.value)}
             className="min-h-[200px] font-mono text-sm"
           />
-          <div className="flex gap-2">
+          <div className="flex gap-2 text-black font-semibold font-sans leading-4 border-0">
             <Button onClick={handleConvert} disabled={!input.trim() || isLoading}>
               {isLoading ? "Converting..." : "Convert Timecodes"}
             </Button>
