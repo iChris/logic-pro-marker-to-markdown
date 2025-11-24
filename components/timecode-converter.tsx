@@ -18,25 +18,28 @@ export default function TimecodeConverter() {
 
     console.log("[v0] Raw input:", timecodeData)
 
-    // Split by multiple tabs and spaces, then filter out empty items
-    const items = timecodeData.split(/\s{2,}|\t{2,}/).filter(Boolean)
-    console.log("[v0] Split items:", items)
+    // Split by newlines to handle each entry separately
+    const lines = timecodeData.split(/\r?\n/).filter((line) => line.trim())
+    console.log("[v0] Split lines:", lines)
 
-    const regexFirstNumbers = /^\d+:/ms // Regex to clean the time data eg "01:"
-    const regexFrameNumbers = /:\d{2}\.\d{2}$/ms // Regex to clean frame numbers eg ":22.33"
+    const regexFirstNumbers = /^\d+:/ // Regex to clean the time data eg "01:"
+    const regexFrameNumbers = /\.\d+$/ // Regex to clean frame numbers/milliseconds eg ".123"
 
     let markdownResult = ""
 
-    for (let i = 0; i < items.length; i += 3) {
-      const timeItem = items[i]?.trim()
-      const titleItem = items[i + 1]?.trim()
-      const durationItem = items[i + 2]?.trim() // This is the duration we skip
+    for (const line of lines) {
+      // Split by tabs or multiple spaces
+      const items = line.split(/\t+|\s{2,}/).filter((item) => item.trim())
+      
+      const timeItem = items[0]?.trim()
+      const titleItem = items[1]?.trim()
+      // duration is usually the 3rd item, but we don't need it
 
-      console.log("[v0] Processing group:", { timeItem, titleItem, durationItem })
+      console.log("[v0] Processing line:", { timeItem, titleItem })
 
       // Skip if we don't have both time and title, or if the timecode starts with 00:00:00 (duration)
       if (!timeItem || !titleItem || timeItem.startsWith("00:00:00")) {
-        console.log("[v0] Skipping group - missing data or duration timecode")
+        console.log("[v0] Skipping line - missing data or duration timecode")
         continue
       }
 
