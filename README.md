@@ -1,6 +1,6 @@
 # Logic Pro Timecode Converter
 
-A Raycast extension that converts Logic Pro timecodes into markdown lists with clickable timestamps.
+A web tool that converts Logic Pro timecodes into markdown lists with clickable timestamps.
 
 ## Features
 
@@ -12,14 +12,13 @@ A Raycast extension that converts Logic Pro timecodes into markdown lists with c
 ## Usage
 
 1. Export your timecode data from Logic Pro (should be tab-separated with timecode and title)
-2. Open the extension in Raycast
-3. Paste your timecode data into the input field
-4. Press "Convert Timecodes" to generate the markdown
-5. Use "Copy to Clipboard" to copy the result
+2. Paste your timecode data into the input field
+3. Press "Convert Timecodes" to generate the markdown
+4. Use "Copy to Clipboard" to copy the result
 
 ## Input Format
 
-The extension expects tab-separated data in this format:
+The tool expects tab-separated data in this format:
 \`\`\`
 01:30:45.123	Intro
 02:15:30.456	Verse 1
@@ -28,7 +27,7 @@ The extension expects tab-separated data in this format:
 
 ## Output Format
 
-The extension generates markdown in this format:
+The tool generates markdown in this format:
 \`\`\`markdown
 * **[30:45](#t=30:45)** Intro<br>
 * **[15:30](#t=15:30)** Verse 1<br>
