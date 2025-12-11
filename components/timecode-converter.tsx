@@ -23,7 +23,7 @@ export default function TimecodeConverter() {
     console.log("[v0] Split lines:", lines)
 
     const regexFirstNumbers = /^\d+:/ // Regex to clean the time data eg "01:"
-    const regexFrameNumbers = /\.\d+$/ // Regex to clean frame numbers/milliseconds eg ".123"
+    const regexFrameNumbers = /[\.:]\d+$/ // Regex to clean frame numbers/milliseconds eg ".123" or ":12"
 
     let markdownResult = ""
 
