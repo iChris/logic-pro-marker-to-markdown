@@ -11,6 +11,30 @@ export default function TimecodeConverter() {
   const [result, setResult] = useState("")
   const [isLoading, setIsLoading] = useState(false)
 
+  function parseTimecode(tc: string): number | null {
+    // Expected format HH:MM:SS:FF.SS or similar
+    // We only care about HH, MM, SS
+    const parts = tc.split(/[:.]/)
+    if (parts.length < 3) return null
+    
+    const h = parseInt(parts[0] || '0', 10)
+    const m = parseInt(parts[1] || '0', 10)
+    const s = parseInt(parts[2] || '0', 10)
+    
+    return h * 3600 + m * 60 + s
+  }
+
+  function formatTimecode(totalSeconds: number): string {
+    const h = Math.floor(totalSeconds / 3600)
+    const m = Math.floor((totalSeconds % 3600) / 60)
+    const s = totalSeconds % 60
+    
+    const pad = (n: number) => n.toString().padStart(2, '0')
+    // Logic Pro seems to output HH:MM:SS
+    // User requested HH:MM:SS format based on examples
+    return `${pad(h)}:${pad(m)}:${pad(s)}`
+  }
+
   function generateMarkdown(timecodeData: string): string {
     if (!timecodeData.trim()) {
       return ""
@@ -22,8 +46,8 @@ export default function TimecodeConverter() {
     const lines = timecodeData.split(/\r?\n/).filter((line) => line.trim())
     console.log("[v0] Split lines:", lines)
 
-    const regexFirstNumbers = /^\d+:/ // Regex to clean the time data eg "01:"
-    const regexFrameNumbers = /[\.:]\d+$/ // Regex to clean frame numbers/milliseconds eg ".123" or ":12"
+    // Offset to subtract (1 hour)
+    const START_OFFSET = 3600
 
     let markdownResult = ""
 
@@ -33,7 +57,6 @@ export default function TimecodeConverter() {
       
       const timeItem = items[0]?.trim()
       const titleItem = items[1]?.trim()
-      // duration is usually the 3rd item, but we don't need it
 
       console.log("[v0] Processing line:", { timeItem, titleItem })
 
@@ -43,8 +66,21 @@ export default function TimecodeConverter() {
         continue
       }
 
-      // Clean the timecode: remove first numbers and frame numbers
-      const cleanTime = timeItem.replace(regexFirstNumbers, "").replace(regexFrameNumbers, "")
+      const totalSeconds = parseTimecode(timeItem)
+      
+      if (totalSeconds === null) {
+          console.log("[v0] Skipping line - invalid timecode format")
+          continue
+      }
+
+      // Subtract the offset
+      let adjustedSeconds = totalSeconds - START_OFFSET
+      
+      // Clamp to 0 if negative, or leave it? User didn't specify, but negative timecodes are weird.
+      // Assuming 0 for now if it goes below.
+      if (adjustedSeconds < 0) adjustedSeconds = 0
+
+      const cleanTime = formatTimecode(adjustedSeconds)
       console.log("[v0] Cleaned time:", cleanTime)
 
       const template = `* **[${cleanTime}](#t=${cleanTime})** ${titleItem}\n`
