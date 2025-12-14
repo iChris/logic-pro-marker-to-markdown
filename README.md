@@ -22,7 +22,8 @@ A web tool that converts Logic Pro timecodes into markdown lists with clickable 
 
 In Logic Pro, make sure to set the Display Time As to Hours : Minutes : Seconds . Milliseconds before exporting the timecode data.
 
-SCREENSHOT HERE
+<img alt="Display Time As to Hours : Minutes : Seconds . Milliseconds before exporting the timecode data." width="862" height="713" alt="CleanShot 2025-12-14 at 15 42 08" src="https://github.com/user-attachments/assets/8c55fa8c-f9f2-4ccf-918a-b6f7b9c17cf8" />
+
 
 ## Input Format
 
