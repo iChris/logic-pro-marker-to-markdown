@@ -30,9 +30,12 @@ export default function TimecodeConverter() {
     const s = totalSeconds % 60
     
     const pad = (n: number) => n.toString().padStart(2, '0')
-    // Logic Pro seems to output HH:MM:SS
-    // User requested HH:MM:SS format based on examples
-    return `${pad(h)}:${pad(m)}:${pad(s)}`
+    
+    // If we have hours, show HH:MM:SS, otherwise MM:SS
+    if (h > 0) {
+      return `${pad(h)}:${pad(m)}:${pad(s)}`
+    }
+    return `${pad(m)}:${pad(s)}`
   }
 
   function generateMarkdown(timecodeData: string): string {
@@ -46,8 +49,8 @@ export default function TimecodeConverter() {
     const lines = timecodeData.split(/\r?\n/).filter((line) => line.trim())
     console.log("[v0] Split lines:", lines)
 
-    // Offset to subtract (1 hour)
-    const START_OFFSET = 3600
+    // Offset to subtract (None required per new requirements)
+    // const START_OFFSET = 3600 
 
     let markdownResult = ""
 
@@ -73,11 +76,9 @@ export default function TimecodeConverter() {
           continue
       }
 
-      // Subtract the offset
-      let adjustedSeconds = totalSeconds - START_OFFSET
+      // No offset subtraction needed
+      let adjustedSeconds = totalSeconds
       
-      // Clamp to 0 if negative, or leave it? User didn't specify, but negative timecodes are weird.
-      // Assuming 0 for now if it goes below.
       if (adjustedSeconds < 0) adjustedSeconds = 0
 
       const cleanTime = formatTimecode(adjustedSeconds)
