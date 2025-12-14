@@ -20,6 +20,10 @@ A web tool that converts Logic Pro timecodes into markdown lists with clickable 
 3. Press "Convert Timecodes" to generate the markdown
 4. Use "Copy to Clipboard" to copy the result
 
+In Logic Pro, make sure to set the Display Time As to Hours : Minutes : Seconds . Milliseconds before exporting the timecode data.
+
+SCREENSHOT HERE
+
 ## Input Format
 
 The tool expects tab-separated data in this format:
