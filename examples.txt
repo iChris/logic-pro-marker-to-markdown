@@ -1,56 +1,28 @@
-BEFORE
+ 	 00:00:52.750	 Gaming platforms of choice	 00:00:00.001	
+ 	 00:06:52.428	 Are Mac gamers still limited?	 00:00:00.001	
+ 	 00:12:06.601	 Happy Project Share Time	 00:00:00.001	
+ 	 00:13:12.000	 A course for someone to learn the basics of the web	 00:00:00.001	
+ 	 00:16:01.000	 Markdown in Terminal	 00:00:00.001	
+ 	 00:17:56.589	 Sponsor: Studioworks	 00:00:00.001	
+ 	 00:20:14.000	 Web component based admin bar	 00:02:33.335	
+ 	 00:22:47.610	 Ship-shape CSS generators	 00:00:00.001	
+ 	 00:32:08.187	 How Many Dudes? game	 00:00:00.001	
+ 	 00:33:25.437	 LudoKit for launching a game	 00:00:00.001	
+ 	 00:37:52.894	 Dummy image generator	 00:00:00.001	
+ 	 00:40:53.937	 Lynn Fisher's portfolio refresh	 00:00:00.001	
+ 	 00:43:27.437	 OmG Summarized Quiz	 00:00:00.001	
+ 	 00:44:50.780	 Outlyne AI Website builder	 00:00:00.001	
+ 	 00:47:39.110	 Greenwood HTML-first web framework	 00:00:00.001	
+ 	 00:51:51.939	 Alex's easter eggs on his personal website	 00:00:00.001	
+ 	 00:54:58.187	 Email Markup Database	 00:00:00.001	
+ 	 01:01:18.687	 Storybook MCP sneak peek	 00:00:00.001	
+ 	 01:01:55.937	 Andy's miniature painting site	 00:00:00.001	
+ 	 01:02:15.207	 Rubber AI	 00:00:00.001	
+ 	 01:02:28.187	 Baseline tennis stats	 00:00:00.001	
+ 	 01:03:08.937	 Interesecting Us	 00:00:00.001	
+ 	 01:04:03.398	 Bitty web tool for interesting pages	 00:00:00.001	
+ 	 01:05:33.840	 Avatar maker	 00:00:00.001	
 
- 	 01:00:52:18.60	 Gaming platforms of choice	 00:00:00:00.01	
- 	 01:06:52:10.55	 Are Mac gamers still limited?	 00:00:00:00.01	
- 	 01:12:06:15.01	 Happy Project Share Time	 00:00:00:00.01	
- 	 01:13:12:00.00	 A course for someone to learn the basics of the web	 00:00:00:00.01	
- 	 01:16:01:00.00	 Markdown in Terminal	 00:00:00:00.01	
- 	 01:17:56:14.58	 Sponsor: tldraw	 00:00:00:00.01	
- 	 01:19:40:19.56	 Web component based admin bar	 00:00:00:00.01	
- 	 01:22:24:16.65	 Ship-shape CSS generators	 00:00:00:00.01	
- 	 01:31:45:06.20	 How Many Dudes? game	 00:00:00:00.01	
- 	 01:33:02:12.40	 LudoKit for launching a game	 00:00:00:00.01	
- 	 01:37:29:23.74	 Dummy image generator	 00:00:00:00.01	
- 	 01:40:31:00.00	 Lynn Fisher's portfolio refresh	 00:00:00:00.01	
- 	 01:43:04:12.40	 OmG Summarized Quiz	 00:00:00:00.01	
- 	 01:44:27:21.06	 Outlyne AI Website builder	 00:00:00:00.01	
- 	 01:47:16:04.26	 Greenwood HTML-first web framework	 00:00:00:00.01	
- 	 01:51:29:00.03	 Alex's easter eggs on his personal website	 00:00:00:00.01	
- 	 01:54:35:06.20	 Email Markup Database	 00:00:00:00.01	
- 	 02:00:55:18.60	 Storybook MCP sneak peek	 00:00:00:00.01	
- 	 02:01:33:00.00	 Andy's miniature painting site	 00:00:00:00.01	
- 	 02:01:52:06.61	 Rubber AI	 00:00:00:00.01	
- 	 02:02:05:06.20	 Baseline tennis stats	 00:00:00:00.01	
- 	 02:02:46:00.00	 Interesecting Us	 00:00:00:00.01	
- 	 02:03:40:11.42	 Bitty web tool for interesting pages	 00:00:00:00.01	
- 	 02:05:10:22.46	 Avatar maker	 00:00:00:00.01	
-
-## AFTER CURRENTLY
-
-* **[00:52](#t=00:52)** Gaming platforms of choice
-* **[06:52](#t=06:52)** Are Mac gamers still limited?
-* **[12:06](#t=12:06)** Happy Project Share Time
-* **[13:12](#t=13:12)** A course for someone to learn the basics of the web
-* **[16:01](#t=16:01)** Markdown in Terminal
-* **[17:56](#t=17:56)** Sponsor: Studioworks
-* **[20:14](#t=20:14)** Web component based admin bar
-* **[22:47](#t=22:47)** Ship-shape CSS generators
-* **[32:08](#t=32:08)** How Many Dudes? game
-* **[33:25](#t=33:25)** LudoKit for launching a game
-* **[37:52](#t=37:52)** Dummy image generator
-* **[40:53](#t=40:53)** Lynn Fisher's portfolio refresh
-* **[43:27](#t=43:27)** OmG Summarized Quiz
-* **[44:50](#t=44:50)** Outlyne AI Website builder
-* **[47:39](#t=47:39)** Greenwood HTML-first web framework
-* **[51:51](#t=51:51)** Alex's easter eggs on his personal website
-* **[54:58](#t=54:58)** Email Markup Database
-* **[01:18](#t=01:18)** Storybook MCP sneak peek
-* **[01:55](#t=01:55)** Andy's miniature painting site
-* **[02:15](#t=02:15)** Rubber AI
-* **[02:28](#t=02:28)** Baseline tennis stats
-* **[03:08](#t=03:08)** Interesecting Us
-* **[04:03](#t=04:03)** Bitty web tool for interesting pages
-* **[05:33](#t=05:33)** Avatar maker
 
 ## AFTER DESIRED
 
