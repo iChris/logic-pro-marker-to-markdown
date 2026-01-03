@@ -1,55 +1,27 @@
 
 const fs = require('fs');
 
-const examples = `00:00:52.750	 Gaming platforms of choice	 00:00:00.001
-00:06:52.428	 Are Mac gamers still limited?	 00:00:00.001
-00:12:06.601	 Happy Project Share Time	 00:00:00.001
-00:13:12.000	 A course for someone to learn the basics of the web	 00:00:00.001
-00:16:01.000	 Markdown in Terminal	 00:00:00.001
-00:17:56.589	 Sponsor: Studioworks	 00:00:00.001
-00:20:14.000	 Web component based admin bar	 02:33.335
-00:22:47.610	 Ship-shape CSS generators	 00:00:00.001
-00:32:08.187	 How Many Dudes? game	 00:00:00.001
-00:33:25.437	 LudoKit for launching a game	 00:00:00.001
-00:37:52.894	 Dummy image generator	 00:00:00.001
-00:40:53.937	 Lynn Fisher's portfolio refresh	 00:00:00.001
-00:43:27.437	 OmG Summarized Quiz	 00:00:00.001
-00:44:50.780	 Outlyne AI Website builder	 00:00:00.001
-00:47:39.110	 Greenwood HTML-first web framework	 00:00:00.001
-00:51:51.939	 Alex's easter eggs on his personal website	 00:00:00.001
-00:54:58.187	 Email Markup Database	 00:00:00.001
-01:01:18.687	 Storybook MCP sneak peek	 00:00:00.001
-01:01:55.937	 Andy's miniature painting site	 00:00:00.001
-01:02:15.207	 Rubber AI	 00:00:00.001
-01:02:28.187	 Baseline tennis stats	 00:00:00.001
-01:03:08.937	 Interesecting Us	 00:00:00.001
-01:04:03.398	 Bitty web tool for interesting pages	 00:00:00.001
-01:05:33.840	 Avatar maker	 00:00:00.001`;
+const examples = ` 	 01:00:25.000	 Xmas catch up	 00:00:00.001	
+ 	 01:06:55.409	 Amazon killed Christmas	 00:00:00.001	
+ 	 01:13:19.687	 Sponsor: Studioworks	 00:00:00.001	
+ 	 01:15:37.210	 A year in ADHD land	 00:00:00.001	
+ 	 01:22:29.834	 Predictions for 2026	 00:00:00.001	
+ 	 01:24:15.000	 Web component based framework	 00:00:00.001	
+ 	 01:35:12.645	 Sanitization API	 00:00:00.001	
+ 	 01:46:48.908	 Self publishing in 2026	 00:00:00.001	
+ 	 01:58:55.429	 Learning the fundamentals vs using AI	 00:00:00.001	
+ 	 02:10:47.250	 Final hot take for 2026!	 00:00:00.001`;
 
-const expectedOutput = `* **[00:52](#t=00:52)** Gaming platforms of choice
-* **[06:52](#t=06:52)** Are Mac gamers still limited?
-* **[12:06](#t=12:06)** Happy Project Share Time
-* **[13:12](#t=13:12)** A course for someone to learn the basics of the web
-* **[16:01](#t=16:01)** Markdown in Terminal
-* **[17:56](#t=17:56)** Sponsor: Studioworks
-* **[20:14](#t=20:14)** Web component based admin bar
-* **[22:47](#t=22:47)** Ship-shape CSS generators
-* **[32:08](#t=32:08)** How Many Dudes? game
-* **[33:25](#t=33:25)** LudoKit for launching a game
-* **[37:52](#t=37:52)** Dummy image generator
-* **[40:53](#t=40:53)** Lynn Fisher's portfolio refresh
-* **[43:27](#t=43:27)** OmG Summarized Quiz
-* **[44:50](#t=44:50)** Outlyne AI Website builder
-* **[47:39](#t=47:39)** Greenwood HTML-first web framework
-* **[51:51](#t=51:51)** Alex's easter eggs on his personal website
-* **[54:58](#t=54:58)** Email Markup Database
-* **[01:01:18](#t=01:01:18)** Storybook MCP sneak peek
-* **[01:01:55](#t=01:01:55)** Andy's miniature painting site
-* **[01:02:15](#t=01:02:15)** Rubber AI
-* **[01:02:28](#t=01:02:28)** Baseline tennis stats
-* **[01:03:08](#t=01:03:08)** Interesecting Us
-* **[01:04:03](#t=01:04:03)** Bitty web tool for interesting pages
-* **[01:05:33](#t=05:33)** Avatar maker`;
+const expectedOutput = `* **[00:00:25](#t=00:00:25)** Xmas catch up
+* **[00:06:55](#t=00:06:55)** Amazon killed Christmas
+* **[00:13:19](#t=00:13:19)** Sponsor: Studioworks
+* **[00:15:37](#t=00:15:37)** A year in ADHD land
+* **[00:22:29](#t=00:22:29)** Predictions for 2026
+* **[00:24:15](#t=00:24:15)** Web component based framework
+* **[00:35:12](#t=00:35:12)** Sanitization API
+* **[00:46:48](#t=00:46:48)** Self publishing in 2026
+* **[00:58:55](#t=00:58:55)** Learning the fundamentals vs using AI
+* **[01:10:47](#t=01:10:47)** Final hot take for 2026!`;
 
 function parseTimecode(tc) {
   // Expected format HH:MM:SS:FF.SS
@@ -63,7 +35,7 @@ function parseTimecode(tc) {
 }
 
 function formatSeconds(totalSeconds) {
-  // Logic Pro seems to output HH:MM:SS even if HH is 00
+  // Only HH:MM:SS format requested
   const h = Math.floor(totalSeconds / 3600);
   const m = Math.floor((totalSeconds % 3600) / 60);
   const s = totalSeconds % 60;
@@ -74,14 +46,12 @@ function formatSeconds(totalSeconds) {
 
 function process(lines) {
   const resultLines = [];
-  // const startOffsetSeconds = 3600; // Removed per user request
+  const startOffsetSeconds = 3600; // 1 hour offset
 
   for (const line of lines) {
     if (!line.trim()) continue;
     
     // Extract time and title
-    // " 01:00:52:18.60	 Gaming platforms of choice..." 
-    // Handling potential leading spaces and tabs
     const parts = line.trim().split(/\t+|\s{2,}/);
     if (parts.length < 2) continue;
     
@@ -91,22 +61,13 @@ function process(lines) {
     // Parse time
     const totalSeconds = parseTimecode(timeStr);
     
-    // No offset subtraction
-    let adjustedSeconds = totalSeconds;
+    // Offset subtraction
+    let adjustedSeconds = totalSeconds - startOffsetSeconds;
     
+    if (adjustedSeconds < 0) adjustedSeconds = 0; // Prevent negative time
+
     // Format
-    const h = Math.floor(adjustedSeconds / 3600);
-    const m = Math.floor((adjustedSeconds % 3600) / 60);
-    const s = adjustedSeconds % 60;
-    
-    const pad = (n) => n.toString().padStart(2, '0');
-    let formattedTime;
-    
-    if (h > 0) {
-        formattedTime = `${pad(h)}:${pad(m)}:${pad(s)}`;
-    } else {
-        formattedTime = `${pad(m)}:${pad(s)}`;
-    }
+    const formattedTime = formatSeconds(adjustedSeconds);
     
     resultLines.push(`* **[${formattedTime}](#t=${formattedTime})** ${title}`);
   }
