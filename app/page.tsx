@@ -22,7 +22,7 @@ export default function Page() {
         </div>
       </div>
       <footer className="py-6 text-center text-sm text-muted-foreground">
-        v0.1.1
+        v0.1.2
       </footer>
     </div>
   )

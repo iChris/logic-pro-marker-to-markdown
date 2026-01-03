@@ -31,11 +31,8 @@ export default function TimecodeConverter() {
     
     const pad = (n: number) => n.toString().padStart(2, '0')
     
-    // If we have hours, show HH:MM:SS, otherwise MM:SS
-    if (h > 0) {
-      return `${pad(h)}:${pad(m)}:${pad(s)}`
-    }
-    return `${pad(m)}:${pad(s)}`
+    // Always return HH:MM:SS
+    return `${pad(h)}:${pad(m)}:${pad(s)}`
   }
 
   function generateMarkdown(timecodeData: string): string {
@@ -50,7 +47,7 @@ export default function TimecodeConverter() {
     console.log("[v0] Split lines:", lines)
 
     // Offset to subtract (None required per new requirements)
-    // const START_OFFSET = 3600 
+    const START_OFFSET = 3600 
 
     let markdownResult = ""
 
@@ -77,7 +74,7 @@ export default function TimecodeConverter() {
       }
 
       // No offset subtraction needed
-      let adjustedSeconds = totalSeconds
+      let adjustedSeconds = totalSeconds - START_OFFSET
       
       if (adjustedSeconds < 0) adjustedSeconds = 0
 
